@@ -35,7 +35,7 @@ urlpatterns += [
 
 # Add URL maps to redirect the base URL to our application
 urlpatterns += [
-    path('', RedirectView.as_view(url='aplicacion/', permanent=True)),
+    path('', RedirectView.as_view(url='aplicacion/usuario', permanent=True)),
 ]
 
 

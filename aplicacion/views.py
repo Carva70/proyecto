@@ -1,14 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views import generic
-import datetime
-
-from django.contrib.auth.decorators import login_required, permission_required
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -16,12 +6,19 @@ from .models import Usuario, Tweet, Retweet
 
 
 def index(request):
-    
-    context = {
-        'retweets': Retweet.objects.order_by('fechaDeRetweet'),
-    }
 
-    # Render the HTML template index.html with the data in the context variable
+    if Retweet.objects.order_by('fechaDeRetweet').count() == 0:
+        context = {
+            'error': 'Error: base de datos vacía',
+        }
+
+    else:
+
+
+        context = {
+            'retweets': Retweet.objects.order_by('fechaDeRetweet').filter(tweet__usuario=Usuario.objects.get(id=1002)),
+            'username': Usuario.objects.get(id=1002).username
+        }
+
     return render(request, 'index.html', context=context)
-
 
