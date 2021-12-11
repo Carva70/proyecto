@@ -8,17 +8,14 @@ from .models import Usuario, Tweet, Retweet
 def index(request):
 
     if Retweet.objects.order_by('fechaDeRetweet').count() == 0:
-        context = {
-            'error': 'Error: base de datos vacía',
-        }
-
-    else:
+        return render(request, 'index.html', context = {'error': 'Error: base de datos vacía'})
 
 
-        context = {
-            'retweets': Retweet.objects.order_by('fechaDeRetweet').filter(tweet__usuario=Usuario.objects.get(id=1002)),
-            'username': Usuario.objects.get(id=1002).username
-        }
+
+    context = {
+        'retweets': Retweet.objects.order_by('fechaDeRetweet').filter(tweet__usuario=Usuario.objects.get(id=1002)),
+        'username': Usuario.objects.get(id=1002).username
+    }
 
     return render(request, 'index.html', context=context)
 
