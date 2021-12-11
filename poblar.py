@@ -77,7 +77,7 @@ def populate():
             'id': 1002,
             'tweet': Tweet.objects.get(id=1001),
             'usuario': Usuario.objects.get(id=1001),
-            'fechaDeRetweet': '2021-01-10'
+            'fechaDeRetweet': '2021-01-11'
         },
         {
             'id': 1003,
@@ -89,7 +89,7 @@ def populate():
             'id': 1004,
             'tweet': Tweet.objects.get(id=1003),
             'usuario': Usuario.objects.get(id=1003),
-            'fechaDeRetweet': '2021-01-15'
+            'fechaDeRetweet': '2021-01-16'
         }
     ]
 
